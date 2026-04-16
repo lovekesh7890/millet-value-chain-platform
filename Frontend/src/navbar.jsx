@@ -1,4 +1,5 @@
 import React from 'react';
+import Aboutus from './Aboutus';
 function Navbar() {
     return (
       <nav
@@ -20,10 +21,10 @@ function Navbar() {
             </li>
             <li className="nav-items text-decoration-none me-5">
               <a
-                href="#"
+                href="/Aboutus"
                 className="text-decoration-none text-black fs-6 font-bold"
               >
-                AboutUs
+                Aboutus
               </a>
             </li>
           </ul>
