@@ -1,13 +1,17 @@
 import React from 'react';
-import { createRoot } from 'react-dom/client'
-import HomePage from './Home/HomePage'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter, Routes } from 'react-router-dom'
+import App from './App'
 
 
 import './App.css';
 
 
-createRoot(document.getElementById('root')).render(
-  <HomePage/>
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <BrowserRouter>
+    <App/>
+  </BrowserRouter>
   ,
 )
 

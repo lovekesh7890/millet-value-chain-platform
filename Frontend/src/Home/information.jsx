@@ -3,7 +3,7 @@ function Information() {
     return (
       <div className="container">
         <div className="row-4 mt-8 text-center">
-          <h1 style={{ fontFamily: "Roboto Slab" }}>Why ShreeAnna.com?</h1>
+          <h1 className="font-serif">Why ShreeAnna.com?</h1>
           <p className="text-gray-500 mb-4">
             A millet-specific platform designed for India's agricultural
             ecosystem.
@@ -18,9 +18,11 @@ function Information() {
                   hover:-translate-y-2 transition duration-300"
           >
             <div className="h-12 w-12 bg-olive-200 rounded-xl mb-4 hover:bg-olive-300 flex flex-wrap justify-center content-center">
-              <i class="fa-solid fa-plant-wilt"></i>
+              <i className="fa-solid fa-plant-wilt"></i>
             </div>
-            <h5 className="text-2xl font-bold mb-2">Smart Product Listing</h5>
+            <h5 className="text-2xl font-bold mb-2 font-roboto-slab">
+              Smart Product Listing
+            </h5>
             <p className="text-gray-500">
               Farmers list millets with variety, price, stock & crop details in
               seconds.
@@ -33,9 +35,11 @@ function Information() {
                   hover:-translate-y-2 transition duration-300"
           >
             <div className="h-12 w-12 bg-olive-200 rounded-xl mb-4 hover:bg-olive-300 flex flex-wrap justify-center content-center">
-              <i class="fa-solid fa-shield"></i>
+              <i className="fa-solid fa-shield"></i>
             </div>
-            <h5 className="text-2xl font-bold mb-2">QR Traceability</h5>
+            <h5 className="text-2xl font-bold mb-2 font-roboto-slab">
+              QR Traceability
+            </h5>
             <p className="text-gray-500">
               Farm-to-fork tracking with QR codes & FSSAI validation for
               consumer trust.
@@ -48,9 +52,11 @@ function Information() {
                   hover:-translate-y-2 transition duration-300"
           >
             <div className="h-12 w-12 bg-olive-200 rounded-xl mb-4 hover:bg-olive-300 flex flex-wrap justify-center content-center">
-              <i class="fa-solid fa-language"></i>
+              <i className="fa-solid fa-language"></i>
             </div>
-            <h5 className="text-2xl font-bold mb-2">Multilingual Support</h5>
+            <h5 className="text-2xl font-bold mb-2 font-roboto-slab">
+              Multilingual Support
+            </h5>
             <p className="text-gray-500">
               Platform available in Hindi, English, and regional languages.
             </p>
@@ -65,9 +71,11 @@ function Information() {
                   hover:-translate-y-2 transition duration-300"
           >
             <div className="h-12 w-12 bg-olive-200 rounded-xl mb-4 hover:bg-olive-300 flex flex-wrap justify-center content-center">
-              <i class="fa-solid fa-mobile"></i>
+              <i className="fa-solid fa-mobile"></i>
             </div>
-            <h5 className="text-2xl font-bold mb-2">Offline Ready</h5>
+            <h5 className="text-2xl font-bold mb-2 font-roboto-slab">
+              Offline Ready
+            </h5>
             <p className="text-gray-500">
               Works without internet using IndexedDB. Syncs when back online.
             </p>
@@ -79,9 +87,11 @@ function Information() {
                   hover:-translate-y-2 transition duration-300"
           >
             <div className="h-12 w-12 bg-olive-200 rounded-xl mb-4 hover:bg-olive-300 flex flex-wrap justify-center content-center">
-              <i class="fa-solid fa-chart-bar"></i>
+              <i className="fa-solid fa-chart-bar"></i>
             </div>
-            <h5 className="text-2xl font-bold mb-2">Analytics & Insights</h5>
+            <h5 className="text-2xl font-bold mb-2 font-roboto-slab">
+              Analytics & Insights
+            </h5>
             <p className="text-gray-500">
               Sales reports, buyer preferences, and smart suggestions for
               farmers.
@@ -94,9 +104,11 @@ function Information() {
                   hover:-translate-y-2 transition duration-300"
           >
             <div className="h-12 w-12 bg-olive-200 rounded-xl mb-4 hover:bg-olive-300 flex flex-wrap justify-center content-center">
-              <i class="fa-solid fa-people-line"></i>
+              <i className="fa-solid fa-people-line"></i>
             </div>
-            <h5 className="text-2xl font-bold mb-2">Direct Market Access</h5>
+            <h5 className="text-2xl font-bold mb-2 font-roboto-slab">
+              Direct Market Access
+            </h5>
             <p className="text-gray-500">
               Connect farmers, FPOs, SHGs directly with buyers. No middlemen.
             </p>

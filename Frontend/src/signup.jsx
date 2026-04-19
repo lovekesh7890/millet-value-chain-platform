@@ -1,103 +1,118 @@
-import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./Registration.css";
+import React from "react";
+import { Link } from "react-router-dom";
+import Footer from "./footer";
 
-const Registration = () => {
-  const [register, setRegister] = useState({
-    FullName: "",
-    Email: "",
-    Password: "",
-    Location: "",
-  });
-
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState("");
-
-  const navigate = useNavigate();
-
-  const handleRegisterChange = (e) => {
-    setRegister({ ...register, [e.target.name]: e.target.value });
-  };
-
-  const handleInsert = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("http://localhost:3000/insert", register);
-      setMessage(res.data.message);
-      setMessageType("success");
-
-      setRegister({
-        FullName: "",
-        Email: "",
-        Password: "",
-        Location: "",
-      });
-
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
-    } catch (error) {
-      setMessage(error.response?.data?.message || "Registration failed");
-      setMessageType("error");
-    }
-  };
-
+function Signup() {
   return (
-    <div className="registration-page">
-      <form onSubmit={handleInsert} className="form">
+    <>
+      <div className="p-0">
+        {/* Navbar */}
+        <nav className="fixed top-0 w-full flex justify-center items-center h-16 bg-olive-500">
+          <div className="flex justify-center font-serif">
+            <h2>ShreeAnna.com</h2>
+          </div>
+        </nav>
 
-        {/* Full Name */}
-        <input
-          type="text"
-          name="FullName"
-          value={register.FullName}
-          onChange={handleRegisterChange}
-          placeholder="Enter Full Name"
-          required
-        />
+        {/* Content */}
+        <div className="pt-15">
+          <div className="mt-0 m-2 p-2">
+            <h4 className="flex justify-center font-serif">Create an Account</h4>
+            <p className="flex justify-center text-gray-600 font-roboto-slab">
+              Join the millet value chain
+            </p>
+          </div>
 
-        {/* Email */}
-        <input
-          type="email"
-          name="Email"
-          value={register.Email}
-          onChange={handleRegisterChange}
-          placeholder="Enter Email"
-          required
-        />
+          {/* Form Card */}
+          <div className="flex justify-center m-1 p-1">
+            <div className="border-2 border-black h-3/4 w-3/12 bg-olive-100 rounded-lg">
+              <p className="m-2 p-1">I am a,</p>
 
-        {/* Password */}
-        <input
-          type="password"
-          name="Password"
-          value={register.Password}
-          onChange={handleRegisterChange}
-          placeholder="Enter Password"
-          required
-        />
+              <div className="flex justify-center m-2 p-2">
+                <div className="border-2 border-black h-20 mr-1 rounded-md flex flex-col justify-center text-center w-1/2">
+                  <div>
+                    <i className="fa-solid fa-building-wheat text-xl text-amber-950"></i>
+                  </div>
+                  Farmer/FPO
+                </div>
 
-        {/* Location */}
-        <input
-          type="text"
-          name="Location"
-          value={register.Location}
-          onChange={handleRegisterChange}
-          placeholder="Enter Location"
-          required
-        />
+                <div className="border-2 border-black h-20 ml-1 rounded-md flex flex-col justify-center text-center w-1/2">
+                  <div>
+                    <i className="fa-solid fa-cart-shopping text-xl text-amber-950"></i>
+                  </div>
+                  Buyer/Processor
+                </div>
+              </div>
 
-        <button type="submit">Register</button>
-      </form>
+              <form>
+                <div className="flex flex-col m-2 p-2">
+                  <label htmlFor="name">Full Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="user_name"
+                    placeholder="Your full name"
+                    required
+                    className="border-2 border-black rounded-md h-10 focus:ring-2 focus:ring-green-600"
+                  />
+                </div>
 
-      {/* Message */}
-      {message && (
-        <p className={messageType === "success" ? "success" : "error"}>
-          {message}
-        </p>
-      )}
-    </div>
+                <div className="flex flex-col m-2 p-2">
+                  <label htmlFor="email">Email Address</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="youremail@.com"
+                    required
+                    className="border-2 border-black rounded-md h-10 focus:ring-2 focus:ring-green-600"
+                  />
+                </div>
+
+                <div className="flex flex-col m-2 p-2">
+                  <label htmlFor="password">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="pass"
+                    placeholder="**********"
+                    required
+                    className="border-2 border-black rounded-md h-10 focus:ring-2 focus:ring-green-600"
+                  />
+                </div>
+
+                <div className="flex flex-col m-2 p-2">
+                  <label htmlFor="location">Enter your Location</label>
+                  <input
+                    type="text"
+                    id="location"
+                    name="loc"
+                    placeholder="City, State"
+                    className="border-2 border-black rounded-md h-10 focus:ring-2 focus:ring-green-600"
+                  />
+                </div>
+
+                <div className="flex justify-center m-2 p-1">
+                  <button className="bg-green-800 text-white px-4 py-2 rounded">
+                    Create Account
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {/* Login Link */}
+          <p className="flex justify-center m-2 p-2 text-gray-500">
+            Already have an account?
+            <Link to={"/Login"} className="no-underline text-black ml-1">
+              Login
+            </Link>
+          </p>
+        </div>
+      </div>
+
+      <Footer />
+    </>
   );
-};
+}
 
-export default Registration;
+export default Signup;

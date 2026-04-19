@@ -1,6 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Hero() {
+
+  const navigate = useNavigate();
+
     return (
       <div className="container-fluid p-0">
         <div className="position-relative">
@@ -16,8 +20,7 @@ function Hero() {
               🌾 Shree Anna for Shreshta Bharat
             </span>
             <h1
-              className="text-9xl mt-4 mb-2"
-              style={{ fontFamily: "Roboto Slab" }}
+              className="text-9xl mt-4 mb-2 font-serif"
             >
               Millet Value Chain <br></br> Platform
             </h1>
@@ -26,7 +29,7 @@ function Hero() {
               <br></br> and processors. Fair prices, QR traceability, and
               government <br></br> scheme integration all in one place.
             </p>
-            <button className="btn btn-success btn-lg me-4">Get Started</button>
+            <button className="btn btn-success btn-lg me-4" onClick={() => navigate("/Signup")}>Get Started</button>
             <button className="btn btn-outline-secondary btn-lg">
               Browse Millets
             </button>
