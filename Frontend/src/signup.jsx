@@ -16,7 +16,9 @@ function Signup() {
         {/* Content */}
         <div className="pt-15">
           <div className="mt-0 m-2 p-2">
-            <h4 className="flex justify-center font-serif">Create an Account</h4>
+            <h4 className="flex justify-center font-serif">
+              Create an Account
+            </h4>
             <p className="flex justify-center text-gray-600 font-roboto-slab">
               Join the millet value chain
             </p>
@@ -32,7 +34,9 @@ function Signup() {
                   <div>
                     <i className="fa-solid fa-building-wheat text-xl text-amber-950"></i>
                   </div>
-                  Farmer/FPO
+                    <a href={"/farmhome"} className="text-decoration-none text-black">
+                      Farmer/FPO
+                    </a>
                 </div>
 
                 <div className="border-2 border-black h-20 ml-1 rounded-md flex flex-col justify-center text-center w-1/2">
@@ -103,7 +107,7 @@ function Signup() {
           {/* Login Link */}
           <p className="flex justify-center m-2 p-2 text-gray-500">
             Already have an account?
-            <Link to={"/Login"} className="no-underline text-black ml-1">
+            <Link to={"/Login"} className="text-decoration-none text-black ml-1">
               Login
             </Link>
           </p>

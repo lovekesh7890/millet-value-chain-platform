@@ -6,7 +6,7 @@ function Hero() {
   const navigate = useNavigate();
 
     return (
-      <div className="container-fluid p-0">
+      <div className="container-fluid p-0 mt-17">
         <div className="position-relative">
           <img
             src="/picture1.jpg"
