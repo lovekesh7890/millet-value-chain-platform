@@ -13,10 +13,7 @@ const MY_SECRET_KEY = "1234@#$1";
 
 
 mongoose
-  .connect("mongodb+srv://lovekeshsharma1999_db_user:1IlHd4LitSacOsVD@cluster0.rp4d0m1.mongodb.net/registration?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect("mongodb+srv://lovekeshsharma1999_db_user:1IlHd4LitSacOsVD@cluster0.rp4d0m1.mongodb.net/registration?retryWrites=true&w=majority")
   .then(() => console.log("MongoDB connected "))
   .catch((err) => console.log("Connection error :", err.message));
 
@@ -141,7 +138,7 @@ app.post("/login", async (req, res) => {
 });
 
 
-const port = 5173;
+const port = 5000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
