@@ -13,10 +13,12 @@ const MY_SECRET_KEY = "1234@#$1";
 
 
 mongoose
-  .connect("mongodb+srv://lovekeshsharma1999_db_user:1IlHd4LitSacOsVD@cluster0.rp4d0m1.mongodb.net/?appName=Cluster0")
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log("Connection error:", err));
-
+  .connect("mongodb+srv://lovekeshsharma1999_db_user:1IlHd4LitSacOsVD@cluster0.rp4d0m1.mongodb.net/registration?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected "))
+  .catch((err) => console.log("Connection error :", err.message));
 
 const profileSchema = new mongoose.Schema({
   FullName: {
