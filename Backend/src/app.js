@@ -9,7 +9,7 @@ app.use(express.json());
 
 const MY_SECRET_KEY = "1234@#$1";
 
-// ✅ MongoDB Connection
+
 mongoose
   .connect("mongodb+srv://lovekeshsharma1999_db_user:Love@7890@cluster0.rp4d0m1.mongodb.net/test")
   .then(() => console.log("MongoDB connected"))
