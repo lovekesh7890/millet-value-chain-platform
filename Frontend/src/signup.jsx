@@ -1,18 +1,91 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Footer from "./footer";
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom"
 
-function Signup() {
+
+const Signup = () => {
+  const navigate = useNavigate();
+
+  const [register, setRegister] = useState({
+   FullName:"",
+   email:"",
+   password:"",
+   Location:"",
+  });
+
+  const [message, setMessage] = useState("");
+
+  const handleRegisterChange = (e) => {
+    const { name, value } = e.target;
+
+    setRegister({
+      ...register,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      register.FullName.charAt(0) !==
+      register.FullName.charAt(0).toUpperCase()
+    ) {
+      setMessage("First letter of Firstname must be uppercase");
+      return;
+    }
+   
+
+    if (register.password.length < 6) {
+      setMessage("Password must be at least 6 characters long");
+      return;
+    }
+   
+    for (let i = 0; i < register.email.length; i++) {
+      if (register.email.charAt(i) !== register.email.charAt(i).toLowerCase()) {
+        setMessage("Email must be in lower case");
+        return;
+      }
+    }
+   
+    try {
+      const payload = {
+        FullName: register.FullName.trim(),
+        email: register.email.trim(),
+        password: register.password,
+        Location:register.Location.trim(),
+      };
+
+      const res = await axios.post("http://localhost:5000/insert", payload);
+
+      setMessage(res.data.message || "Signup successful");
+
+      setRegister({
+       FullName:"",
+       email:"",
+       password:"",
+       Location:"",
+      });
+
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    } catch (error) {
+      console.log(error);
+
+      if (error.response) {
+        setMessage(error.response.data.message);
+      } else {
+        setMessage("Server not responding");
+      }
+    }
+  };
+
   return (
-    <>
-      <div className="p-0">
-        {/* Navbar */}
-        <nav className="fixed top-0 w-full flex justify-center items-center h-16 bg-olive-500">
-          <div className="flex justify-center font-serif">
-            <h2>ShreeAnna.com</h2>
-          </div>
-        </nav>
+    <div>
+      <nav>
+     
 
+<<<<<<< HEAD
         {/* Content */}
         <div className="pt-15">
           <div className="mt-0 m-2 p-2">
@@ -101,9 +174,43 @@ function Signup() {
                   </button>
                 </div>
               </form>
-            </div>
+=======
+        <div className="nav-links">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+          <Link to="/about" className="nav-link">
+            About
+          </Link>
+          <Link to="/registration" className="nav-link active">
+            Registration
+          </Link>
+        </div>
+      </nav>
+
+      <div className="registration-wrapper">
+        <div className="registration-card">
+          <div className="registration-header">
+            
+            
           </div>
 
+          <form onSubmit={handleSubmit} className="registration-form">
+            <div className="form-group">
+              <label className="form-label">FullName</label>
+              <input
+                type="text"
+                name="FullName"
+                value={register.FullName}
+                onChange={handleRegisterChange}
+                className="form-input"
+                placeholder="First Name"
+                required
+              />
+>>>>>>> 3bc60dd0d94855fb9774f3ab704b9782e2dbe19a
+            </div>
+
+<<<<<<< HEAD
           {/* Login Link */}
           <p className="flex justify-center m-2 p-2 text-gray-500">
             Already have an account?
@@ -111,12 +218,86 @@ function Signup() {
               Login
             </Link>
           </p>
+=======
+          
+
+            <div className="form-group">
+              <label className="form-label">Email</label>
+              <input
+                type="email"
+                name="email"
+                value={register.email}
+                onChange={handleRegisterChange}
+                className="form-input"
+                placeholder="Enter your email"
+                required
+              />
+            </div>
+
+
+     
+
+            <div className="form-group">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                name="password"
+                value={register.password}
+                onChange={handleRegisterChange}
+                className="form-input"
+                placeholder="Create password"
+                required
+                minLength="6"
+              />
+              <span className="password-hint">6+ characters required</span>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">Location</label>
+              <input
+                type="text"
+                name="Location"
+                value={register.Location}
+                onChange={handleRegisterChange}
+                className="form-input"
+                placeholder="Enter your Location"
+                required
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary btn-block">
+             Create Account
+            </button>
+
+            <div className="login-prompt">
+              <span>Already Register</span>
+
+              <button
+                type="button"
+                onClick={() => navigate("/")}
+                className="btn btn-secondary"
+              >
+                Sign In
+              </button>
+            </div>
+          </form>
+
+          {message && (
+            <div
+              className={`notification ${
+                message.toLowerCase().includes("success")
+                  ? "notification-success"
+                  : "notification-error"
+              }`}
+            >
+              {message}
+            </div>
+          )}
+>>>>>>> 3bc60dd0d94855fb9774f3ab704b9782e2dbe19a
         </div>
       </div>
-
-      <Footer />
-    </>
+    </div>
   );
-}
+};
 
 export default Signup;
