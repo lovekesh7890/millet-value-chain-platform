@@ -293,7 +293,6 @@ const Signup = () => {
               {message}
             </div>
           )}
->>>>>>> 3bc60dd0d94855fb9774f3ab704b9782e2dbe19a
         </div>
       </div>
     </div>
