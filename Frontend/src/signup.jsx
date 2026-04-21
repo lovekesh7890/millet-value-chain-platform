@@ -4,14 +4,14 @@ import Footer from "./footer";
 import axios from "axios"
 
 function Signup() {
-  const[message ,setMessage]=useState('')
+  
   const [formData, setFormData] = useState({
     FullName: "",
     email: "",
     password: "",
     Location: "",
   });
-
+  const[message ,setMessage]=useState('')
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -57,7 +57,7 @@ function Signup() {
         payload
       );
   
-      setMessage(res.data.message || "Signup successful");
+      setMessage(res.data.message || "Registration Successful");
   
       setFormData({
         FullName: "",
