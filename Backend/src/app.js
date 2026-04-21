@@ -69,12 +69,12 @@ const verifytoken = (req, res, next) => {
 
 app.post("/insert", async (req, res) => {
   try {
-    console.log("Incoming data:", req.body); // 👈 ADD THIS
+    console.log("Incoming data:", req.body); 
 
     const { FullName, email, password, Location } = req.body;
 
     const existingUser = await Profile.findOne({ email });
-    console.log("Existing user:", existingUser); // 👈 ADD
+    console.log("Existing user:", existingUser); 
 
     if (existingUser) {
       return res.status(400).json({
