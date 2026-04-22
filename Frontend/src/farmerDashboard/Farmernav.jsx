@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 function Farmernav() {
   const [open, setOpen] = useState(false);
 
-  // ✅ hook yaha aayega (inside component)
+
   const { t, i18n } = useTranslation();
 
   return (
@@ -20,7 +20,7 @@ function Farmernav() {
           ShreeAnna.com
         </h4>
 
-        {/* 🌍 Language Buttons (Desktop) */}
+     
         <div className="hidden md:flex gap-2">
           <button
             onClick={() => {
@@ -80,7 +80,7 @@ function Farmernav() {
       {open && (
         <div className="md:hidden flex flex-col items-center gap-4 pb-4 bg-[rgba(0,60,0,0.9)]">
           
-          {/* 🌍 Mobile Language Buttons */}
+        
           <div className="flex gap-2">
             <button
               onClick={() => {
