@@ -139,6 +139,14 @@ app.post("/login", async (req, res) => {
 });
 
 
+app.get("/display", verifytoken, async (req, res) => {
+  try {
+    const user = await Profile.findById(req.user.id).select("-password");
+    res.status(200).json({ success: true, Profile: user });
+  } catch (error) {
+    res.status(500).json({ message: "Server error" });
+  }
+});
 const port = 5000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

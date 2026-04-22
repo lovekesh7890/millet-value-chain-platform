@@ -39,6 +39,7 @@ function Login() {
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("senderemail", Login.email);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
 
         setmessage({
           type: "success",
