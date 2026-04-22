@@ -11,7 +11,7 @@ import Header from './header';
 
 import Footer from '../footer';
 
-function Farmhome() {
+function Framhome() {
 
   const [activeTab, setActiveTab] = useState("products");
 
@@ -41,4 +41,4 @@ function Farmhome() {
     );
 }
 
-export default Farmhome;
+export default Framhome;

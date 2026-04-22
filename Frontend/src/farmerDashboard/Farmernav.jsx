@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+
 
 function Farmernav() {
   const [open, setOpen] = useState(false);
-
-
-  const { t, i18n } = useTranslation();
 
   return (
     <nav
