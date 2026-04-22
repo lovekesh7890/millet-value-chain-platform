@@ -47,7 +47,7 @@ function Login() {
         });
 
         setTimeout(() => {
-          navigate("/farmhome");
+          navigate("/Framhome");
         }, 1000);
       } else {
         setmessage({
