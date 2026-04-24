@@ -55,7 +55,7 @@ profileSchema.pre("save", async function (next) {
 
 
 const Profile = mongoose.model("Profile", profileSchema);
-const productSchema=mongoose.model("productschema",productSchema);
+
 
 const verifytoken = (req, res, next) => {
   const authHeader = req.headers["authorization"];

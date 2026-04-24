@@ -6,11 +6,11 @@ const Marketplace = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 🔥 API Call
   useEffect(() => {
-    fetch("https://mocki.io/v1/0a8b1f9c-7c2e-4b1a-9f2a-123456789abc") // 👈 replace with your API
+    fetch("http://localhost:5000/api/products")
       .then((res) => res.json())
       .then((data) => {
+        console.log("API DATA:", data); // debug ke liye
         setProducts(data);
         setLoading(false);
       })
