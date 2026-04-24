@@ -6,12 +6,12 @@ import Analytics from './Analytics';
 import Order from './order';
 
 
-import Farmernav from "./Farmernav";
-import Header from './header';
+import Farmernav from "./framnav";
+import Header from './Header';
 
 import Footer from '../footer';
 
-function Farmhome() {
+function Framhome() {
 
   const [activeTab, setActiveTab] = useState("products");
 
@@ -41,4 +41,4 @@ function Farmhome() {
     );
 }
 
-export default Farmhome;
+export default Framhome;

@@ -39,6 +39,7 @@ function Login() {
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("senderemail", Login.email);
+    
 
         setmessage({
           type: "success",
@@ -46,7 +47,7 @@ function Login() {
         });
 
         setTimeout(() => {
-          navigate("/farmhome");
+          navigate("/Header");
         }, 1000);
       } else {
         setmessage({
