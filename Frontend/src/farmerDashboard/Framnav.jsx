@@ -1,21 +1,34 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import axios from "axios"
+import { removeUser } from "../utils/userSlice";
+import { useDispatch } from "react-redux";
+
+
 
 
 function Farmnav() {
-  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const { t, i18n } = useTranslation();
-  const isLoggedIn = !!localStorage.getItem("token");
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
 
   // for language buttons
   const [langOpen, setLangOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = async()=>{
+    try{
+      await axios.post("http://localhost:5000/logout",{},{
+        withCredentials:true,
+      });
+      dispatch(removeUser());
+      navigate("/Login")
+    }
+    catch(err){
+      console.error(err)
+    }
+  }
 
   return (
     <nav
@@ -39,41 +52,25 @@ function Farmnav() {
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-8">
           <li>
-            <Link
-              to={"/marketPlace"}
-              className="text-white font-bold no-underline!"
-            >
+            <Link to={"/Aboutus"} className="text-white font-bold">
               {t("marketplace")}
             </Link>
           </li>
           <li>
-            <Link
-              to={"/Framhome"}
-              className="text-white font-bold no-underline!"
-            >
+            <Link to={"/Aboutus"} className="text-white font-bold">
               {t("dashboard")}
             </Link>
           </li>
           <li>
-            <Link
-              to={"/Aboutus"}
-              className="text-white font-bold no-underline!"
-            >
+            <Link to={"/Aboutus"} className="text-white font-bold">
               {t("about")}
             </Link>
           </li>
-
-          {/* Logout */}
           <li>
-            {isLoggedIn ? (
-              <button onClick={handleLogout} className="text-white font-bold">
-                {t("Logout")}
-              </button>
-            ) : (
-              <Link to={"/Signup"} className="text-white font-bold">
-                {t("signup")}
-              </Link>
-            )}
+            <Link to={"/Login"}className="text-white font-bold"
+             onClick={handleLogout}>
+              {t("Logout")}
+            </Link>
           </li>
 
           {/* language menu */}
@@ -117,48 +114,33 @@ function Farmnav() {
       {open && (
         <div className="md:hidden flex flex-col items-center gap-4 pb-4 bg-[rgba(0,60,0,0.9)]">
           <Link
-            to={"/marketPlace"}
-            className="text-white font-bold no-underline!"
+            to={"/Aboutus"}
+            className="text-white font-bold"
             onClick={() => setOpen(false)}
           >
             {t("marketplace")}
           </Link>
           <Link
-            to={"/Framhome"}
-            className="text-white font-bold no-underline!"
+            to={"/Aboutus"}
+            className="text-white font-bold"
             onClick={() => setOpen(false)}
           >
             {t("dashboard")}
           </Link>
           <Link
             to={"/Aboutus"}
-            className="text-white font-bold no-underline!"
+            className="text-white font-bold"
             onClick={() => setOpen(false)}
           >
             {t("about")}
           </Link>
-
-          {/* Logout */}
-          {isLoggedIn ? (
-            <button
-              onClick={() => {
-                handleLogout();
-                setOpen(false);
-              }}
-              className="text-white font-bold"
-            >
-              {t("Logout")}
-            </button>
-          ) : (
-            <Link
-              to={"/Signup"}
-              className="text-white font-bold"
-              onClick={() => setOpen(false)}
-            >
-              {t("signup")}
-            </Link>
-          )}
-
+          <Link
+            to="#"
+            className="text-white font-bold"
+            onClick={handleLogout}
+          >
+            {t("Logout")}
+          </Link>
           <Link className="text-decoration-none">
             {!langOpen && (
               <i
