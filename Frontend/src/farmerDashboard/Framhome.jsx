@@ -8,7 +8,7 @@ import Order from './order';
 
 import Farmernav from "./framnav";
 import Header from './Header';
-import AddProductModal from './AddProductModal';
+import AddproductForm from './AddproductForm';
 
 import Footer from '../footer';
 
@@ -41,7 +41,7 @@ function Framhome() {
         </div>
         <Footer />
         
-        {showModal && (<AddProductModal closeModal={() => setShowModal(false)}/>)}
+        {showModal && (<AddproductForm closeModal={() => setShowModal(false)}/>)}
       </>
     );
 }
