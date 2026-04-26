@@ -9,13 +9,13 @@ import Footer from './footer';
 import Signup from './signup';
 import Login from './login';
 import Aboutus from './Aboutus';
-<<<<<<< HEAD
 
-import Marketplace from './marketPlace';
-=======
->>>>>>> f277fea8df54c525d3852e11af3cde990597dea7
 
-// import Marketplace from './userDashboard/marketPlace';
+// import Marketplace from './marketPlace';
+
+
+
+import Marketplace from './userDashboard/marketPlace';
 import ProductListing from './farmerDashboard/ProductListing';
 
 
@@ -31,11 +31,10 @@ function App() {
           <Route path='/Login' element={<Login/>} />
           <Route path='/Aboutus' element={<Aboutus/>} />
           <Route path='/Footer'element={<Footer/>}/>
-<<<<<<< HEAD
+
           <Route path='/marketPlace' element={<Marketplace/>}/>
           <Route path='/productListing'element={<ProductListing/>}/>
-=======
->>>>>>> f277fea8df54c525d3852e11af3cde990597dea7
+
         </Routes>
       </>
     );
