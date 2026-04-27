@@ -9,14 +9,14 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
+
 app.use(express.json());
 app.use(cors());
 
-// DB Connection
+
 connectDB();
 
-// Routes
+
 app.use("/api/users", userRoutes);
 
 const PORT = process.env.PORT || 5000;

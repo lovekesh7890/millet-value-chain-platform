@@ -53,7 +53,9 @@ function Signup() {
 
       console.log("Sending data:", payload);
 
-      const res = await axios.post("http://localhost:5000/signup", payload);
+      const API = "http://localhost:5000/api/users";
+
+const res = await axios.post(`${API}/signup`, payload);
       alert(res.data.message || "Account created successfully");
       setMessage(res.data.message || "Registration Successful");
       
