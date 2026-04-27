@@ -25,17 +25,16 @@ const Marketplace = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       <div className="min-h-screen bg-gray-50 p-4 sm:p-6 w-full mt-5 cursor-pointer">
         {/* Title */}
-        {/* <div className="text-left m-2 p-2">
+        <div className="text-left m-2 p-2">
           <p className="text-2xl sm:text-3xl font-bold font-serif">
             Millet Marketplace
           </p>
           <p className="mb-4 font-roboto text-green-900 text-sm sm:text-base">
             Browse fresh millets directly from farmers across India
           </p>
-        </div> */}
+        </div>
 
         {/* Search + Filters */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
@@ -80,12 +79,12 @@ const Marketplace = () => {
 
             {/* Only structure (later map from backend) */}
             <ProductCard />
+
             <ProductCard />
             <ProductCard />
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </>
   );
       

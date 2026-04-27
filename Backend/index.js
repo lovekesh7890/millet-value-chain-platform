@@ -62,7 +62,7 @@ profileSchema.pre("save", async function (next) {
 
 
 const Profile = mongoose.model("Profile", profileSchema);
-const AddProduct = mongoose.model("AddProduct", productSchema);
+
 
 
 const verifytoken = (req, res, next) => {
@@ -81,7 +81,6 @@ const verifytoken = (req, res, next) => {
     next();
   });
 };
-
 
 app.post("/signup", async (req, res) => {
   try {
