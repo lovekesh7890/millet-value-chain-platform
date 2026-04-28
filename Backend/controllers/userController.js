@@ -70,7 +70,7 @@ exports.login = async (req, res) => {
   }
 };
 
-const Product = require("../models/Product");
+
 
 exports.addProduct = async (req, res) => {
   try {
@@ -109,14 +109,7 @@ exports.addProduct = async (req, res) => {
   }
 };
 
-exports.getProducts = async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+
 
 exports.getUsers = async (req, res) => {
   try {
@@ -127,11 +120,3 @@ exports.getUsers = async (req, res) => {
   }
 };
 
-exports.getProducts = async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.json(products);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
