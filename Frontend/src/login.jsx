@@ -30,17 +30,20 @@ function Login() {
       const res = await axios.post(
         "http://localhost:5000/api/users/login",
         login,
+       
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
+      console.log(res.data);
 
       if (res.data.token) {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("senderemail", login.email);
-        localStorage.setItem("FullName", res.data.FullName);
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("senderemail", login.email);
+        // localStorage.setItem("FullName", res.data.FullName);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
 
         dispatch(
           addUser({
