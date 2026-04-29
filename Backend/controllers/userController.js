@@ -7,12 +7,12 @@ const MY_SECRET_KEY = process.env.JWT_SECRET;
 
 exports.signup = async (req, res) => {
   try {
-    const { FullName, email, password, Location } = req.body;
+    const { FullName, email, password, Location , role} = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
-      alert('User already exists');
+      // alert('User already exists');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -22,6 +22,7 @@ exports.signup = async (req, res) => {
       email,
       password: hashedPassword,
       Location,
+      role
     });
 
     res.status(201).json({
