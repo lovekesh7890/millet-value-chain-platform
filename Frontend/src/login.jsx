@@ -40,26 +40,31 @@ function Login() {
       console.log(res.data);
 
       if (res.data.token) {
-        // localStorage.setItem("token", res.data.token);
-        // localStorage.setItem("senderemail", login.email);
-        // localStorage.setItem("FullName", res.data.FullName);
+       
+        localStorage.setItem("token", res.data.token);
+      
+  
         localStorage.setItem("user", JSON.stringify(res.data.user));
-
+      
+       
         dispatch(
           addUser({
-            FullName: res.data.FullName,
-          }),
+            id: res.data.user.id,
+            FullName: res.data.user.FullName,
+            role: res.data.user.role,
+          })
         );
-
+      
         setMessage({
           type: "success",
           message: "Login successful! Redirecting...",
         });
-
+      
         setTimeout(() => {
-          navigate("/Framhome");
+          navigate("/Framhome"); 
         }, 1000);
-      } else {
+      }
+       else {
         setMessage({
           type: "danger",
           message: res.data.message || "Login failed",
