@@ -14,6 +14,7 @@ function Login() {
     password: "",
   });
 
+
   const [message, setMessage] = useState(null);
 
   const handleChange = (e) => {
@@ -37,6 +38,12 @@ function Login() {
           },
         }
       );
+        const role = res.data.user.role;
+       if(role==="farmer"){
+      navigate("/Framhome")
+    }else{
+      navigate("/Userhome")
+    }
       console.log(res.data);
 
       if (res.data.token) {

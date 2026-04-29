@@ -14,7 +14,12 @@ import Footer from "../footer";
 function Framhome() {
   const [activeTab, setActiveTab] = useState("products");
   const [showModal, setShowModal] = useState(false);
+
   const [user, setUser] = useState(null);
+
+  // const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user)
+
 
   const navigate = useNavigate();
 
