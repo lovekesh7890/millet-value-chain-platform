@@ -8,18 +8,23 @@ function ProductListing() {
   
   const fetchProducts = async () => {
     try {
-      const token=localStorage.getItem('token');
-      const res = await axios.get("http://localhost:5000/api/products"{
-        headers:{
-          Authorization:`Bearer ${token}`
+      const token = localStorage.getItem("token");
+  
+      const res = await axios.get(
+        "http://localhost:5000/api/products",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
-      });
+      );
+  
       setProducts(res.data);
     } catch (error) {
       console.error(error);
     }
   };
-
+  
   useEffect(() => {
     fetchProducts();
   }, []);
