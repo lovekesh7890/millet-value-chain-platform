@@ -109,35 +109,30 @@ function Signup() {
               <p className="m-2 p-2">I am a,</p>
 
               {/* Role Selection */}
-              <div className="flex flex-col sm:flex-row justify-center m-2 p-2 gap-2">
+              {/* Role Selection */}
+<div className="flex flex-col sm:flex-row justify-center m-2 p-2 gap-2">
 
-                <div className="border-2 border-black h-20 rounded-md flex flex-col justify-center text-center w-full sm:w-1/2  hover:bg-blue-200 cursor-pointer transition duration-200">
+  {/* Farmer */}
+  <div
+    onClick={() => setRole("farmer")}
+    className={`border-2 border-black h-20 rounded-md flex flex-col justify-center text-center w-full sm:w-1/2 cursor-pointer transition duration-200
+    ${role === "farmer" ? "bg-green-800 text-white" : "bg-white hover:bg-blue-200"}`}
+  >
+    <i className="fa-solid fa-building-wheat"></i>
+    <p>Farmer/FPO</p>
+  </div>
 
-                <div className={`border-2 border-black h-20 rounded-md flex flex-col justify-center text-center w-full sm:w-1/2
-                ${role === "farmer" ? "bg-green-800 text-white" : "bg-white"}`}
-                >
+  {/* Buyer */}
+  <div
+    onClick={() => setRole("buyer")}
+    className={`border-2 border-black h-20 rounded-md flex flex-col justify-center text-center w-full sm:w-1/2 cursor-pointer transition duration-200
+    ${role === "buyer" ? "bg-green-800 text-white" : "bg-white hover:bg-blue-200"}`}
+  >
+    <i className="fa-solid fa-cart-shopping"></i>
+    <p>Buyer/Processor</p>
+  </div>
 
-                  <div>
-                    <i className="fa-solid fa-building-wheat"></i>
-                    <button 
-                    type="button"
-                    onClick={()=>setRole("farmer")}>Farmer/FPO</button>
-                  </div>
-                </div>
-
-
-                <div className="border-2 border-black h-20 rounded-md flex flex-col justify-center text-center w-full sm:w-1/2  hover:bg-blue-200 cursor-pointer transition duration-200">
-=======
-                <div className={`border-2 border-black h-20 rounded-md flex flex-col justify-center text-center w-full sm:w-1/2  ${role === "buyer" ? "bg-green-800 text-white" : "bg-white"}`}>
-
-                  <div>
-                    <i className="fa-solid fa-cart-shopping"></i>
-                    <button 
-                    type="button"
-                    onClick={()=>setRole("buyer")}>Buyer/Processor</button>
-                  </div>
-                </div>
-              </div>
+</div>
 
               {/* Form */}
               <form onSubmit={handleSubmit}>
