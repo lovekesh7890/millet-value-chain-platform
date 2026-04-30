@@ -14,7 +14,6 @@ function Login() {
     password: "",
   });
 
-
   const [message, setMessage] = useState(null);
 
   const handleChange = (e) => {
@@ -31,29 +30,22 @@ function Login() {
       const res = await axios.post(
         "http://localhost:5000/api/users/login",
         login,
-       
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
-        const role = res.data.user.role;
-       if(role==="farmer"){
-      navigate("/Framhome")
-    }else{
-      navigate("/Userhome")
-    }
+
       console.log(res.data);
 
+
       if (res.data.token) {
-       
+        // Store data
         localStorage.setItem("token", res.data.token);
-      
-  
         localStorage.setItem("user", JSON.stringify(res.data.user));
-      
-       
+
+        // Redux store
         dispatch(
           addUser({
             id: res.data.user.id,
@@ -61,20 +53,29 @@ function Login() {
             role: res.data.user.role,
           })
         );
-      
+
+        // Success message
         setMessage({
           type: "success",
           message: "Login successful! Redirecting...",
         });
+
+    
+        const role = res.data.user.role;
+        if (role === "farmer") {
+          navigate("/Framhome");
+        } else {
+          navigate("/Userhome");
+        }
+
+      } else {
       
-     
-      }
-       else {
         setMessage({
           type: "danger",
           message: res.data.message || "Login failed",
         });
       }
+
     } catch (error) {
       setMessage({
         type: "danger",
@@ -99,6 +100,7 @@ function Login() {
           <div className="flex justify-center m-2 p-2">
             <div className="border-2 border-black w-3/12 bg-olive-100 rounded-lg">
               <form onSubmit={handleSubmit}>
+                
                 {/* Email */}
                 <div className="flex flex-col m-2 p-2">
                   <label>Email Address</label>
