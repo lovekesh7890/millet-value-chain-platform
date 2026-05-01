@@ -22,6 +22,7 @@ function Farmnav() {
       await axios.post("http://localhost:5000/logout",{},{
         withCredentials:true,
       });
+      localStorage.removeItem("token");
       dispatch(removeUser());
       navigate("/Login");
     }

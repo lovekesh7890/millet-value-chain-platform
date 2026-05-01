@@ -5,31 +5,37 @@ function ProductListing() {
 
   const [products, setProducts] = useState([]);
 
-  
   const fetchProducts = async () => {
     try {
       const token = localStorage.getItem("token");
       console.log("TOKEN:", token);
-  
+
       if (!token) {
         console.log("No token found");
         return;
       }
-  
+
       const res = await axios.get(
         "http://localhost:5000/api/products",
         {
-         headers:{
-          Authorization:`Bearer ${token}`,
-         }
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
-  
+
+      console.log("DATA:", res.data);
       setProducts(res.data);
+
     } catch (error) {
       console.error(error.response?.data || error.message);
     }
   };
+
+ 
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <div className="mx-2 p-2 font-roboto font-semibold cursor-pointer">
@@ -37,29 +43,22 @@ function ProductListing() {
 
         {products.map((item, index) => (
           <div key={index} className="flex flex-col border-2 border-black rounded-xl bg-olive-200 p-3">
-            
-            {/* Top */}
+
             <div className="flex justify-between items-start">
-              <h6 className="text-sm sm:text-base">
+              <h6>
                 {item.ProductName}
-                <p className="text-xs text-gray-600">{item.Variety}</p>
+                <p>{item.Variety}</p>
               </h6>
-              <p className="text-sm sm:text-base">₹{item.Price}</p>
+              <p>₹{item.Price}</p>
             </div>
 
-            {/* Tags */}
-            <div className="mt-2 flex flex-wrap gap-2">
-              <button className="btn btn-warning btn-sm rounded-pill">
-                Organic
-              </button>
-              <button className="btn btn-outline-light btn-sm rounded-pill text-black">
-                FSSAI
-              </button>
+            <div className="mt-2 flex gap-2">
+              <button>Organic</button>
+              <button>FSSAI</button>
             </div>
 
-            {/* Bottom */}
-            <div className="flex justify-between items-center mt-2 text-gray-500 text-xs sm:text-sm">
-              <p>Stock: {item.Stock} quintals</p>
+            <div className="flex justify-between mt-2">
+              <p>Stock: {item.Stock}</p>
               <p>{item.Location}</p>
             </div>
 

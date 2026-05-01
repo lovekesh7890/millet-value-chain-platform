@@ -42,9 +42,11 @@ function Login() {
 
      
       if (res.data.token) {
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        // localStorage.setItem("user", JSON.stringify(res.data.user));
         localStorage.setItem("token", res.data.token);
-        console.log(res.data.token);
+      
+        console.log("NEW TOKEN:", res.data.token);
+console.log("STORED TOKEN:", localStorage.getItem("token"));
 
 
         dispatch(addUser(res.data.user));
