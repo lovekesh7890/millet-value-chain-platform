@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { model } = require("mongoose");
 
+const JWT_SECRET = process.env.JWT_SECRET;
 const verifytoken = (req, res, next) => {
   const key = process.env.JWT_SECRET;
   const authHeader = req.headers["authorization"];
@@ -17,4 +18,8 @@ const verifytoken = (req, res, next) => {
     next();
   });
 };
+<<<<<<< HEAD
 module.exports = verifytoken;
+=======
+module.exports=verifytoken
+>>>>>>> 8b9aabc31632c5d0d64ca4195a3929c44f326d52
