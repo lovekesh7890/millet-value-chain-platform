@@ -3,23 +3,26 @@ const Product = require("../models/Product");
 
 const addProduct = async (req, res) => {
   try {
-    const product = new Product(req.body);
+    const product = new Product({
+      ...req.body,
+      userId:req.user.id,
+    });
+    
     await product.save();
 
     res.status(201).json({ message: "Product added" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({message:"Try again to add prouduct"});
   }
 };
 
 const getProducts = async (req, res) => {
   try {
-   
-    const products = await Product.find({ userId: req.user.userId });
-    console.log("USER:", req.user);
-    res.json(products);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    const productlist = await Product.find({ userId: req.user.id });
+
+    res.status(200).json(productlist);
+  } catch (error) {
+    res.status(500).json({ message: "Internal Error" });
   }
 };
 

@@ -35,11 +35,16 @@ export default function AddProductModal({ closeModal }) {
     }
 
     setLoading(true);
-
+const token=localStorage.getItem("token");
     try {
       const res = await axios.post(
         "http://localhost:5000/api/products",
-        addproduct
+        addproduct,
+        {
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        }
       );
 
       alert(res.data.message);

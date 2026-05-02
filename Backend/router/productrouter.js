@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const { addProduct, getProducts } = require("../controllers/productController");
-const auth = require("../middleware/authMiddleware");
+// const authMiddleware = require("../middleware/authMiddleware");
 const verifytoken = require("../middleware/authMiddleware");
 
 
-router.post("/", addProduct);  
+router.post("/", verifytoken,addProduct);  
 router.get("/", verifytoken, getProducts);
 
 

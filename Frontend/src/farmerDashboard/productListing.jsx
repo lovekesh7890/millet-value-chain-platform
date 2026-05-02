@@ -34,6 +34,7 @@ function ProductListing() {
 
  
   useEffect(() => {
+   
     fetchProducts();
   }, []);
 

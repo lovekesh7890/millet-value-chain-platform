@@ -3,7 +3,7 @@ const User = require("../models/User");
 const Product = require("../models/Product");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const MY_SECRET_KEY = process.env.JWT_SECRET;
+const MY_SECRET_KEY = '123$#@%&00';
 
 exports.signup = async (req, res) => {
   try {
@@ -55,7 +55,7 @@ exports.login = async (req, res) => {
 
     const token = jwt.sign(
       { id: user._id },
-      process.env.JWT_SECRET,
+      MY_SECRET_KEY,
       { expiresIn: "1d" }
     );
 console.log(token);

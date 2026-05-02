@@ -15,7 +15,6 @@ function Login() {
   });
 
   const [message, setMessage] = useState(null);
-  
 
   const handleChange = (e) => {
     setLogin({
@@ -35,17 +34,26 @@ function Login() {
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
 
       console.log("LOGIN RESPONSE:", res.data);
 
-     
-      if (res.data.token) {
-        // localStorage.setItem("user", JSON.stringify(res.data.user));
+      if (res.data?.token && res.data?.user) {
+       
+        localStorage.removeItem("user");
+
+      
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+
+        
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("senderEmail",login.email);
-    
+
+
+        
+        localStorage.setItem("senderEmail", login.email);
+
+        
         dispatch(addUser(res.data.user));
 
         setMessage({
@@ -53,20 +61,20 @@ function Login() {
           message: "Login successful! Redirecting...",
         });
 
-   
         const role = res.data.user?.role;
         localStorage.setItem("role", role);
 
+    
         if (role === "farmer") {
           navigate("/Framhome");
         } else {
           navigate("/Userhome");
         }
+
       } else {
-      
         setMessage({
           type: "danger",
-          message: res.data.message || "Login failed",
+          message: res.data?.message || "Login failed",
         });
       }
 
@@ -78,8 +86,7 @@ function Login() {
         message: error.response?.data?.message || "Server error",
       });
     }
-
-  }
+  };
 
   return (
     <>
@@ -104,7 +111,6 @@ function Login() {
                     name="email"
                     value={login.email}
                     onChange={handleChange}
-                    placeholder="youremail@.com"
                     required
                     className="border-2 border-black rounded-md h-10 px-2"
                   />
@@ -117,7 +123,6 @@ function Login() {
                     name="password"
                     value={login.password}
                     onChange={handleChange}
-                    placeholder="****"
                     required
                     className="border-2 border-black rounded-md h-10 px-2"
                   />
@@ -138,7 +143,9 @@ function Login() {
           {message && (
             <p
               className={`text-center ${
-                message.type === "danger" ? "text-red-500" : "text-green-600"
+                message.type === "danger"
+                  ? "text-red-500"
+                  : "text-green-600"
               }`}
             >
               {message.message}
