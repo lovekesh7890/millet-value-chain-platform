@@ -13,8 +13,9 @@ const name = JSON.parse(localStorage.getItem("user"));
 const dispatch = useDispatch()
 useEffect(() => {
   if (!name) {
-    // const name = JSON.parse(localStorage.getItem("FullName"));
-    console.log( user)
+    const name = JSON.parse(localStorage.getItem("FullName"));
+    console.log(name);
+   
     if (name) {
        dispatch(addUser({FullName:name}))
     };
