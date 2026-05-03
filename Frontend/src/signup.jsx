@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Footer from "./footer";
 import axios from "axios";
+
+import { AlertContext } from "./AlertContext";
 
 import Userhome from "./userDashboard/Userhome";
 
@@ -12,7 +14,9 @@ function Signup() {
     password: "",
     location: "",
   });
-  const [message, setMessage] = useState(null);
+  // const [message, setMessage] = useState(null);
+
+  const { showAlert } = useContext(AlertContext);
 
   const[role , setRole] = useState("")
 
@@ -26,28 +30,35 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!role) {
-      setMessage("Please select a role");
+    if (!formData.fullName || !formData.email || !formData.password) {
+      showAlert("error", "Please fill all required fields");
       return;
     }
 
-    if (formData.fullName.charAt(0) !== formData.fullName.charAt(0).toUpperCase()){
-      setMessage("First letter of Firstname must be uppercase");
+    if (!role) {
+      showAlert("error", "Please select a role");
       return;
     }
+
+    if (
+      formData.fullName &&
+      formData.fullName.charAt(0) !== formData.fullName.charAt(0).toUpperCase()
+    ) {
+      showAlert("error", "First letter must be uppercase");
+      return;
+    }
+
+    
 
     if (formData.password.length < 6) {
-      setMessage("Password must be at least 6 characters long");
+      showAlert("error", "Password must be at least 6 characters");
       return;
       
     }
 
-
-    for (let i = 0; i < formData.email.length; i++) {
-      if (formData.email.charAt(i) !== formData.email.charAt(i).toLowerCase()) {
-        setMessage("Email must be in lower case");
-        return;
-      }
+    if (formData.email !== formData.email.toLowerCase()) {
+      showAlert("error", "Email must be in lowercase");
+      return;
     }
 
     try {
@@ -65,8 +76,7 @@ function Signup() {
       const API = "http://localhost:5000/api/users";
 
       const res = await axios.post(`${API}/signup`, payload);
-      alert(res.data.message || "Account created successfully");
-      setMessage(res.data.message || "Registration Successful");
+      showAlert("success", res.data.message || "Account created successfully");
       
 
       setFormData({
@@ -78,7 +88,10 @@ function Signup() {
       });
     } catch (error) {
       console.log("ERROR:", error.response?.data);
-      setMessage(error.response?.data?.message || "Something went wrong");
+      showAlert(
+        "error",
+        error.response?.data?.message || "Something went wrong",
+      );
     }
   };
 
@@ -147,7 +160,6 @@ function Signup() {
                     value={formData.fullName}
                     onChange={handleChange}
                     placeholder="Your Full Name"
-                    required
                     className="border-2 border-black rounded-md h-10 px-2"
                   />
                 </div>
@@ -160,7 +172,6 @@ function Signup() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="youremail@.com"
-                    required
                     className="border-2 border-black rounded-md h-10 px-2"
                   />
                 </div>
@@ -173,7 +184,6 @@ function Signup() {
                     value={formData.password}
                     onChange={handleChange}
                     placeholder="****"
-                    required
                     className="border-2 border-black rounded-md h-10 px-2"
                   />
                 </div>
@@ -202,10 +212,10 @@ function Signup() {
             </div>
           </div>
 
-          {/* Message */}
+          {/* Message
           {message && (
             <p className="text-center text-red-500 mt-2">{message}</p>
-          )}
+          )} */}
 
           {/* Login Link */}
           <p className="text-center m-2 p-4 text-gray-500 text-sm sm:text-base">

@@ -6,18 +6,18 @@ import "./i18n";
 
 import './App.css';
 import { Provider } from 'react-redux';
+import { AlertProvider } from "./AlertContext";
 import appStore from './utils/appStore';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  
   <Provider store={appStore}>
     <BrowserRouter>
-    <App/>
+      <AlertProvider>
+        <App />
+      </AlertProvider>
     </BrowserRouter>
-  </Provider>
- 
-  ,
-)
+  </Provider>,
+);
 

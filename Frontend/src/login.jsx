@@ -1,20 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "./footer";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addUser } from "./utils/userSlice";
 
+import { AlertContext } from "./AlertContext";
+
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const { showAlert } = useContext(AlertContext);
 
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
 
-  const [message, setMessage] = useState(null);
+  // const [message, setMessage] = useState(null);
 
   const handleChange = (e) => {
     setLogin({
@@ -56,10 +60,7 @@ function Login() {
         
         dispatch(addUser(res.data.user));
 
-        setMessage({
-          type: "success",
-          message: "Login successful! Redirecting...",
-        });
+        showAlert("success", "Login successful!");
 
         const role = res.data.user?.role;
         localStorage.setItem("role", role);
@@ -72,19 +73,13 @@ function Login() {
         }
 
       } else {
-        setMessage({
-          type: "danger",
-          message: res.data?.message || "Login failed",
-        });
+        showAlert("error", res.data.message || "Login failed");
       }
 
     } catch (error) {
       console.log("LOGIN ERROR:", error.response?.data);
 
-      setMessage({
-        type: "danger",
-        message: error.response?.data?.message || "Server error",
-      });
+      showAlert("error", error.response?.data?.message || "Server error");
     }
   };
 
@@ -140,7 +135,7 @@ function Login() {
             </div>
           </div>
 
-          {message && (
+          {/* {message && (
             <p
               className={`text-center ${
                 message.type === "danger"
@@ -150,7 +145,7 @@ function Login() {
             >
               {message.message}
             </p>
-          )}
+          )} */}
 
           <p className="text-center text-gray-500">
             Don't have an account?

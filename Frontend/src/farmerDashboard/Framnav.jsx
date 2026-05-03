@@ -51,30 +51,35 @@ function Farmnav() {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-8 ">
           <li>
             <Link
               to={"/Marketplace"}
-              className="text-white font-bold"
-              onClick={() => setActiveTab("marketplace")}
+              className="text-white font-bold no-underline!"
             >
               {t("marketplace")}
             </Link>
           </li>
           <li>
-            <Link to={"/Aboutus"} className="text-white font-bold">
+            <Link
+              to={"/Framhome"}
+              className="text-white font-bold no-underline!"
+            >
               {t("dashboard")}
             </Link>
           </li>
           <li>
-            <Link to={"/Aboutus"} className="text-white font-bold">
+            <Link
+              to={"/Aboutus"}
+              className="text-white font-bold no-underline!"
+            >
               {t("about")}
             </Link>
           </li>
           <li>
             <Link
               to={"/Login"}
-              className="text-white font-bold"
+              className="text-white font-bold no-underline!"
               onClick={handleLogout}
             >
               {t("Logout")}
@@ -123,26 +128,30 @@ function Farmnav() {
         <div className="md:hidden flex flex-col items-center gap-4 pb-4 bg-[rgba(0,60,0,0.9)]">
           <Link
             to={"/Marketplace"}
-            className="text-white font-bold"
+            className="text-white font-bold no-underline!"
             onClick={() => setOpen(false)}
           >
             {t("marketplace")}
           </Link>
           <Link
             to={"/Aboutus"}
-            className="text-white font-bold"
+            className="text-white font-bold no-underline!"
             onClick={() => setOpen(false)}
           >
             {t("dashboard")}
           </Link>
           <Link
             to={"/Aboutus"}
-            className="text-white font-bold"
+            className="text-white font-bold no-underline!"
             onClick={() => setOpen(false)}
           >
             {t("about")}
           </Link>
-          <Link to="#" className="text-white font-bold" onClick={handleLogout}>
+          <Link
+            to="#"
+            className="text-white font-bold no-underline!"
+            onClick={handleLogout}
+          >
             {t("Logout")}
           </Link>
           <Link className="text-decoration-none">
